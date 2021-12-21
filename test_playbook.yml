@@ -1,2 +1,13 @@
 ---
-something_here
+  - hosts: all
+    tasks:
+      - name: Run WinPing
+        action: win_ping
+
+      - name: Run Command
+        win_shell: hostname
+        notify: Reboot Server
+
+    handlers:
+      - name: Reboot Server
+        win_reboot:
